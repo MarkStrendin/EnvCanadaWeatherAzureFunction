@@ -1,12 +1,10 @@
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using MarkStrendin.EnvCanadaWeatherParser;
 using System.Net.Http;
 using System.Collections.Generic;
@@ -46,7 +44,7 @@ namespace EnvironmentCanadaWeatherFunction
                 if (_cachedResults.ContainsKey(locationCode))
                 {
                     CachedCurrentWeatherResult cachedValue = _cachedResults[locationCode];
-                    if (DateTime.Now.Subtract(cachedValue.timeCached) < _cacheLifetimeMinutes)
+                    if (DateTime.Now.Subtract(cachedValue.TimeCached) < _cacheLifetimeMinutes)
                     {
                         // Send the cache
                         log.LogInformation("Found cached data for location code \"" + locationCode + "\" - sending");
@@ -70,7 +68,7 @@ namespace EnvironmentCanadaWeatherFunction
                     // If we've made it this far, add the weather to the cache before returning it
                     CachedCurrentWeatherResult newResult = new CachedCurrentWeatherResult()
                     {
-                        timeCached = DateTime.Now,
+                        TimeCached = DateTime.Now,
                         CurrentWeather = parsedCurrentWeather,
                         IsSuccess = true
                     };
@@ -84,7 +82,7 @@ namespace EnvironmentCanadaWeatherFunction
                     // limited every 10 minutes)
                     CachedCurrentWeatherResult newResult = new CachedCurrentWeatherResult()
                     {
-                        timeCached = DateTime.Now,
+                        TimeCached = DateTime.Now,
                         CurrentWeather = _nullWeather,
                         IsSuccess = false
                     };
