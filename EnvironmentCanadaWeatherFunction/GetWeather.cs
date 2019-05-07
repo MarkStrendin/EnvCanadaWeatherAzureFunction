@@ -18,7 +18,7 @@ namespace EnvironmentCanadaWeatherFunction
         private static readonly SortedDictionary<string, CachedCurrentWeatherResult> _cachedResults = new SortedDictionary<string, CachedCurrentWeatherResult>();
         private static readonly CurrentWeather _nullWeather = new CurrentWeather();
         private static readonly List<string> _validLocationPrefixes = new List<string>() { "AB", "BC", "MB", "NB", "NL", "NT", "NS", "NU", "ON", "PE", "QC", "SK", "YT" };
-        private static readonly TimeSpan _cacheLifetimeMinutes = new TimeSpan(0, 15, 0);
+        private static readonly TimeSpan _cacheLifetimeMinutes = new TimeSpan(0, 30, 0);
 
         [FunctionName("GetWeather")]
         public static IActionResult Run(
