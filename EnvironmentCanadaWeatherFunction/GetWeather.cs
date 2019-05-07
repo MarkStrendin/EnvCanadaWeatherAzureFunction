@@ -96,7 +96,7 @@ namespace EnvironmentCanadaWeatherFunction
         }
 
         
-        private static bool validateLocationCode(string input)
+        public static bool validateLocationCode(string input)
         {
             if (!string.IsNullOrEmpty(input))
             {
@@ -104,11 +104,14 @@ namespace EnvironmentCanadaWeatherFunction
                 {
                     if (_validLocationPrefixes.Contains(input.Substring(0, 2)))
                     {
-                        string locationNumer = input.Substring(3, input.Length - 3);
-                        int.TryParse(locationNumer, out int locationIDNumer);
-                        if ((locationIDNumer > 0) && (locationIDNumer < 200))
+                        if (input.Substring(2, 1) == "-")
                         {
-                            return true;
+                            string locationNumer = input.Substring(3, input.Length - 3);
+                            int.TryParse(locationNumer, out int locationIDNumer);
+                            if ((locationIDNumer > 0) && (locationIDNumer < 200))
+                            {
+                                return true;
+                            }
                         }
                     }
                 }
