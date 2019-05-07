@@ -1,0 +1,3 @@
+[submodule "EnvCanadaWeatherParser.git"]
+	path = EnvCanadaWeatherParser
+	url = https://github.com/MarkStrendin/EnvCanadaWeatherParser.git
