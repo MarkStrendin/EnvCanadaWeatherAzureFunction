@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 using MarkStrendin.EnvCanadaWeatherParser;
 using System.Net.Http;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace EnvironmentCanadaWeatherFunction
 {
@@ -17,9 +16,8 @@ namespace EnvironmentCanadaWeatherFunction
         private static readonly HttpClient _httpClient = new HttpClient();
         private static readonly SortedDictionary<string, CachedCurrentWeatherResult> _cachedResults = new SortedDictionary<string, CachedCurrentWeatherResult>();
         private static readonly CurrentWeather _nullWeather = new CurrentWeather();
-        private static readonly List<string> _validLocationPrefixes = new List<string>() { "AB", "BC", "MB", "NB", "NL", "NT", "NS", "NU", "ON", "PE", "QC", "SK", "YT" };
+        private static readonly List<string> _validLocationPrefixes = new List<string>() { "ab", "bc", "mb", "nb", "nl", "nt", "ns", "nu", "on", "pe", "qc", "sk", "yt" };
         private static readonly TimeSpan _cacheLifetimeMinutes = new TimeSpan(0, 30, 0);
-
         [FunctionName("GetWeather")]
         public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "GetWeather/{locationCode}")] HttpRequest req,
@@ -97,22 +95,21 @@ namespace EnvironmentCanadaWeatherFunction
             }
         }
 
+        
         private static bool validateLocationCode(string input)
         {
             if (!string.IsNullOrEmpty(input))
             {
-                if (input.Length == 5)
+                if (input.Length > 3)
                 {
-                    List<string> splitLocation = input.Split('-').ToList<string>();
-                    if (splitLocation.Count == 2)
+                    if (_validLocationPrefixes.Contains(input.Substring(0, 2)))
                     {
-                        if ((splitLocation[0].Length == 2) && (splitLocation[1].Length == 2))
+                        string locationNumer = input.Substring(3, input.Length - 3);
+                        int.TryParse(locationNumer, out int locationIDNumer);
+                        if ((locationIDNumer > 0) && (locationIDNumer < 200))
                         {
-                            if (_validLocationPrefixes.Contains(splitLocation[0].ToUpper()))
-                            {
-                                return true;
-                            }
-                        }                        
+                            return true;
+                        }
                     }
                 }
             }
