@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnvironmentCanadaWeatherFunction", "EnvironmentCanadaWeatherFunction\EnvironmentCanadaWeatherFunction.csproj", "{7695CF2D-361C-49B6-B537-9A85B3D15F4F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnvCanadaWeatherParser", "EnvCanadaWeatherParser\EnvCanadaWeatherParser\EnvCanadaWeatherParser.csproj", "{9BFFA88C-63CD-49C0-9017-C51273268258}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnvCanadaWeatherParser", "dep\EnvCanadaWeatherParser\EnvCanadaWeatherParser\EnvCanadaWeatherParser.csproj", "{9BFFA88C-63CD-49C0-9017-C51273268258}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

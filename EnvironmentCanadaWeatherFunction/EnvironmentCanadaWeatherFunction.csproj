@@ -7,7 +7,7 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EnvCanadaWeatherParser\EnvCanadaWeatherParser\EnvCanadaWeatherParser.csproj" />
+    <ProjectReference Include="..\dep\EnvCanadaWeatherParser\EnvCanadaWeatherParser\EnvCanadaWeatherParser.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
